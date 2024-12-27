@@ -6,6 +6,8 @@ import 'package:instagram_dk/classes/font_dictionary.dart';
 import 'package:instagram_dk/pages/auth_screens/log_in_page.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../classes/create_account.dart';
+
 class SingUpPage extends StatefulWidget {
   const SingUpPage({super.key});
 
@@ -14,7 +16,7 @@ class SingUpPage extends StatefulWidget {
 }
 
 FirebaseAuth auth = FirebaseAuth.instance;
-FirebaseFirestore addAcount = FirebaseFirestore.instance;
+// CollectionReference user1 = FirebaseFirestore.instance.collection("Users");
 
 TextEditingController nameController = TextEditingController();
 TextEditingController emailController = TextEditingController();
@@ -78,13 +80,28 @@ class _SingUpPageState extends State<SingUpPage> {
                   ),
                   2.h.height(),
                   BlueButton(
-                      onPressed: () async {
-                        UserCredential credential =
-                            await auth.createUserWithEmailAndPassword(
-                                email: emailController.text,
-                                password: passwordController.text);
-                        print("Email is ---->>>>${credential.user?.email}");
-                        print("Email is ---->>>>${credential.user?.uid}");
+                      onPressed: () {
+                        // user1.doc("123").set({
+                        //   "user_id": "",
+                        //   "username": userNameController.text,
+                        //   "email": emailController.text,
+                        //   "password_hash": passwordController.text,
+                        //   "full_name": nameController.text,
+                        //   "bio": "",
+                        //   "profile_pic": "",
+                        //   "created_at": FieldValue.serverTimestamp(),
+                        //   "updated_at": FieldValue.serverTimestamp(),
+                        AuthMethods().createAccount(
+                            email: emailController.text,
+                            password: passwordController.text,
+                            username: userNameController.text,
+                            name: nameController.text);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LogInPage(),
+                            ));
+                        // });
                       },
                       text: "Sign up"),
                   3.h.height(),

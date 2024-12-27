@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_dk/classes/auth_classes.dart';
+import 'package:instagram_dk/classes/create_account.dart';
 import 'package:instagram_dk/classes/font_dictionary.dart';
 import 'package:instagram_dk/pages/auth_screens/verify_otp.dart';
 import 'package:sizer/sizer.dart';
@@ -12,6 +14,14 @@ class GetOtp extends StatefulWidget {
   @override
   State<GetOtp> createState() => _GetOtpState();
 }
+
+// final FirebaseFirestore accounts = FirebaseFirestore.instance;
+// Future getdata() async {
+//   DocumentSnapshot data =
+//       await accounts.collection("profiledata").doc(acountId).get();
+//   return data.data();
+//
+// }
 
 TextEditingController nameController = TextEditingController();
 TextEditingController emailController = TextEditingController();
@@ -50,6 +60,11 @@ class _GetOtpState extends State<GetOtp> {
                   AuthTextField(
                       controller: nameController,
                       hintText: "Enter Email,Phone or Username"),
+                  // FutureBuilder(
+                  //   future: getdata(),
+                  //   builder: (context, snapshot) =>
+                  //       Text(snapshot.data["email"]),
+                  // ),
                   2.h.height(),
                   BlueButton(
                       onPressed: () {

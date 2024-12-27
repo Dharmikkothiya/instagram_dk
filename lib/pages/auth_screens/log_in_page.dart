@@ -1,10 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_dk/classes/auth_classes.dart';
+
 import 'package:instagram_dk/classes/font_dictionary.dart';
 import 'package:instagram_dk/pages/auth_screens/get_otp.dart';
 import 'package:instagram_dk/pages/auth_screens/sing_up_page.dart';
 import 'package:instagram_dk/pages/bottom_navigation_tab_bar.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../classes/create_account.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
@@ -13,6 +17,7 @@ class LogInPage extends StatefulWidget {
   State<LogInPage> createState() => _LogInPageState();
 }
 
+FirebaseAuth auth = FirebaseAuth.instance;
 TextEditingController nameController = TextEditingController();
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
@@ -37,7 +42,7 @@ class _LogInPageState extends State<LogInPage> {
                   10.5.h.height(),
                   Image.asset("assets/images/Instagram Logo.png"),
                   4.h.height(),
-                  AuthTextField(controller: nameController, hintText: "Name"),
+                  AuthTextField(controller: emailController, hintText: "Name"),
                   1.7.h.height(),
                   AuthTextField(
                     controller: passwordController,
@@ -49,8 +54,8 @@ class _LogInPageState extends State<LogInPage> {
                     children: [
                       Spacer(),
                       BlueTextButton(
-                          onPressed: () {
-                            Navigator.push(
+                          onPressed: () async {
+                            await Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => GetOtp(),
@@ -63,6 +68,14 @@ class _LogInPageState extends State<LogInPage> {
                   1.7.h.height(),
                   BlueButton(
                       onPressed: () {
+                        AuthMethods().logIn(
+                            email: emailController.text,
+                            password: passwordController.text);
+                        // UserCredential user =
+                        //     await auth.signInWithEmailAndPassword(
+                        //         email: emailController.text,
+                        //         password: passwordController.text);
+                        // print(user.user?.uid);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
