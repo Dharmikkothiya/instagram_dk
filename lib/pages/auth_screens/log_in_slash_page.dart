@@ -22,70 +22,74 @@ class _LogInSlashPageState extends State<LogInSlashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: 5.w.paddingAll(),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  8.h.height(),
-                  Image.asset("assets/images/Instagram Logo.png"),
-                  9.h.height(),
-                  CircleAvatar(
-                    foregroundImage: profilePic,
-                    radius: 6.5.h,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: 5.w.paddingAll(),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      8.h.height(),
+                      Image.asset("assets/images/Instagram Logo.png"),
+                      9.h.height(),
+                      CircleAvatar(
+                        foregroundImage: profilePic,
+                        radius: 6.5.h,
+                      ),
+                      2.h.height(),
+                      Text("jacob_w", style: FontStyles.h2BlackBold),
+                      1.h.height(),
+                      BlueButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LogInPage(),
+                                ));
+                          },
+                          text: "Log In"),
+                      2.5.h.height(),
+                      BlueTextButton(
+                          onPressed: () {},
+                          text: "Switch accounts",
+                          style: FontStyles.h2BlueBold)
+                    ],
                   ),
-                  2.h.height(),
-                  Text("jacob_w", style: FontStyles.h2BlackBold),
-                  1.h.height(),
-                  BlueButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LogInPage(),
-                            ));
-                      },
-                      text: "Log In"),
-                  2.5.h.height(),
-                  BlueTextButton(
-                      onPressed: () {},
-                      text: "Switch accounts",
-                      style: FontStyles.h2BlueBold)
-                ],
+                ),
               ),
             ),
-          ),
-          Divider(),
-          Container(
-            alignment: Alignment.topCenter,
-            width: double.infinity,
-            height: 80,
-            child: Padding(
-              padding: 1.2.h.paddingAll(),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Don’t have an account?",
-                      style: FontStyles.h3GrayRegular),
-                  2.w.width(),
-                  BlueTextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SingUpPage(),
-                            ));
-                      },
-                      text: "Sign up.",
-                      style: FontStyles.h3BlackBold),
-                ],
+            Divider(),
+            Container(
+              alignment: Alignment.topCenter,
+              width: double.infinity,
+              height: 80,
+              child: Padding(
+                padding: 1.2.h.paddingAll(),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Don’t have an account?",
+                        style: FontStyles.h3GrayRegular),
+                    2.w.width(),
+                    BlueTextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SingUpPage(),
+                              ));
+                        },
+                        text: "Sign up.",
+                        style: FontStyles.h3BlackBold),
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

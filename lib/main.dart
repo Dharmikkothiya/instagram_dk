@@ -7,6 +7,7 @@ import 'package:instagram_dk/pages/auth_screens/reset_password.dart';
 import 'package:instagram_dk/pages/auth_screens/sing_up_page.dart';
 import 'package:instagram_dk/pages/auth_screens/verify_otp.dart';
 import 'package:instagram_dk/pages/bottom_navigation_tab_bar.dart';
+import 'package:instagram_dk/pages/bottom_tab_screens/add_reels_page.dart';
 
 import 'package:instagram_dk/pages/bottom_tab_screens/home_page.dart';
 
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Instagram',
         theme: ThemeData(),
-        home: const LogInSlashPage(),
+        home: const AddReelsPage(),
       );
     });
   }
