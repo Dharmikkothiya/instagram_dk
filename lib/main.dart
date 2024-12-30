@@ -10,6 +10,7 @@ import 'package:instagram_dk/pages/bottom_navigation_tab_bar.dart';
 import 'package:instagram_dk/pages/bottom_tab_screens/add_reels_page.dart';
 
 import 'package:instagram_dk/pages/bottom_tab_screens/home_page.dart';
+import 'package:instagram_dk/pages/in_profile_screens/edit_profile.dart';
 
 import 'package:sizer/sizer.dart';
 

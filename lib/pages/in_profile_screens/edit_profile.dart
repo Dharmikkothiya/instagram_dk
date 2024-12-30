@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_dk/classes/auth_classes.dart';
+import 'package:instagram_dk/classes/create_account.dart';
 import 'package:instagram_dk/classes/font_dictionary.dart';
+import 'package:instagram_dk/pages/auth_screens/get_otp.dart';
 import 'package:instagram_dk/pages/bottom_tab_screens/profile_page.dart';
 import 'package:sizer/sizer.dart';
 
@@ -15,6 +17,7 @@ class EditProfile extends StatefulWidget {
 
 TextEditingController nameController = TextEditingController();
 TextEditingController userNameController = TextEditingController();
+TextEditingController passwordController = TextEditingController();
 TextEditingController webSiteController = TextEditingController();
 TextEditingController bioController = TextEditingController();
 TextEditingController emailController = TextEditingController();
@@ -41,11 +44,20 @@ class _EditProfileState extends State<EditProfile> {
                   Text("Edit Profile", style: FontStyles.h1BlackBold),
                   BlueTextButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BottomNavigationTabBar(),
-                            ));
+                        AuthMethods().updateAccount(
+                            email: emailController.text,
+                            password: passwordController.text,
+                            username: userNameController.text,
+                            name: nameController.text,
+                            bio: bioController.text,
+                            gender: genderController.text,
+                            web: webSiteController.text,
+                            phoneNumber: phoneController.text);
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => BottomNavigationTabBar(),
+                        //     ));
                       },
                       text: "Done",
                       style: FontStyles.h1BlueBold)
@@ -115,17 +127,17 @@ class _EditProfileState extends State<EditProfile> {
                           ProfileFormField(
                               label: "Email",
                               hintText: "Email",
-                              controller: userNameController,
+                              controller: emailController,
                               inputType: TextInputType.emailAddress),
                           ProfileFormField(
                               label: "Phone",
                               hintText: "Phone",
-                              controller: webSiteController,
+                              controller: passwordController,
                               inputType: TextInputType.number),
                           ProfileFormField(
                               label: "Gender",
                               hintText: "Gender",
-                              controller: bioController,
+                              controller: genderController,
                               inputType: TextInputType.name),
                         ],
                       ),

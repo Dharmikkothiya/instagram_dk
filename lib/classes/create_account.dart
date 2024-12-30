@@ -41,4 +41,35 @@ class AuthMethods {
   }) async {
     await auth.signInWithEmailAndPassword(email: email, password: password);
   }
+
+  Future<void> updateAccount({
+    required String email,
+    required String password,
+    required String username,
+    String? bio,
+    String? web,
+    String? gender,
+    String? phoneNumber,
+    required String name,
+  }) async {
+    UserCredential createAccount =
+        await auth.signInWithEmailAndPassword(email: email, password: password);
+    print(createAccount.user!.uid);
+    String userId = createAccount.user!.uid;
+    print(userId);
+    acountId = userId;
+
+    accounts.collection("profiledata").doc(userId).update({
+      "user_id": userId,
+      "username": username,
+      "email": email,
+      "password_hash": password,
+      "full_name": name,
+      "bio": bio,
+      "web": web,
+      "gender": gender,
+      "phone number": phoneNumber,
+      "profile_pic": "",
+    });
+  }
 }

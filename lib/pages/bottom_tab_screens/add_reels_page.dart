@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instagram_dk/classes/auth_classes.dart';
@@ -11,6 +13,7 @@ class AddReelsPage extends StatefulWidget {
   @override
   State<AddReelsPage> createState() => _AddReelsPageState();
 }
+
 // Future<void> getLostData() async {
 //   final ImagePicker picker = ImagePicker();
 //   final LostDataResponse response = await picker.retrieveLostData();
@@ -22,9 +25,11 @@ class AddReelsPage extends StatefulWidget {
 //
 //
 // }
- VideoPlayerController? _controller;
-  VideoPlayerController? _toBeDisposed;
-  ImagePicker image=ImagePicker();
+VideoPlayerController? _controller;
+VideoPlayerController? _toBeDisposed;
+ImagePicker image = ImagePicker();
+
+File? image1;
 
 class _AddReelsPageState extends State<AddReelsPage> {
   @override
@@ -35,9 +40,26 @@ class _AddReelsPageState extends State<AddReelsPage> {
           child: Center(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [IconButton(onPressed: () async{final XFile? pickedFile= await image.pickImage(source: ImageSource.gallery);
-              
-            }, icon: Icon(Icons.upload))
+            children: [
+              IconButton(
+                  onPressed: () async {
+                    final XFile? pickedFile =
+                        await image.pickImage(source: ImageSource.gallery);
+                    image1 = File(pickedFile!.path);
+
+                    /// store this path in local storage
+                    // image1.path
+                    setState(() {});
+                  },
+                  icon: Icon(Icons.upload)),
+
+              image1 != null
+                  ? Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(image: FileImage(image1!))),
+                    )
+                  : SizedBox()
+
               // SizedBox(width: 100,height: 100,child: ImagePicker().pickImage(source: ImageSource.camera);
             ],
           )),
