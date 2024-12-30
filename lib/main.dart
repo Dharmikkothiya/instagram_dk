@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Instagram',
         theme: ThemeData(),
-        home: const AddReelsPage(),
+        home: const LogInSlashPage(),
       );
     });
   }

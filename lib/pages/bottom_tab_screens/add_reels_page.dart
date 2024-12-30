@@ -53,13 +53,6 @@ class _AddReelsPageState extends State<AddReelsPage> {
                   },
                   icon: Icon(Icons.upload)),
 
-              image1 != null
-                  ? Container(
-                      decoration: BoxDecoration(
-                          image: DecorationImage(image: FileImage(image1!))),
-                    )
-                  : SizedBox()
-
               // SizedBox(width: 100,height: 100,child: ImagePicker().pickImage(source: ImageSource.camera);
             ],
           )),
